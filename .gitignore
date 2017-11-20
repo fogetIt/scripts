@@ -1,4 +1,8 @@
+# folds
 .idea/
 
-*.pyc
+
+# files
+*.py[cod]
 *.log
+*.whl
