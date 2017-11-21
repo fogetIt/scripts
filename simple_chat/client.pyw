@@ -458,6 +458,21 @@ class MainWindow(Thread, Client, MainFrame):
         MainWindow.app.MainLoop()
 
 
+class MixedStr(str):
+
+    def __len__(self):
+        chinese_list = re.findall(u"[\u4e00-\u9fa5]", str(self))
+        return super(MixedStr, self).__len__() + len(chinese_list)
+
+    @staticmethod
+    def wrap(text, n, text_line=None):
+        text_list = text_list if text_list else []
+
+
+text = MixedStr("mkkhgcyd啧啧啧")
+print len(text)
+
+
 class REPL(Thread, Client):
 
     def __init__(self, window):
