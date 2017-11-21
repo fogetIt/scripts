@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Date:   2017-03-20 10:52:39
-# @Last Modified time: 2017-03-20 13:44:44
+# @Last Modified time: 2017-11-21 11:07:43
 import json
 import socket
 import select
@@ -59,7 +59,8 @@ class Chat(LogUtils):
 
     def update_data_store(self, user_name, client_ip, tcp_socket):
         if user_name in self.user_dict or client_ip in self.conn_dict:
-            self.logger.warn(self.wam("%s or %s is already exist" % (user_name, client_ip)))
+            self.logger.warn(
+                self.wam("%s or %s is already exist" % (user_name, client_ip)))
             self.close_socket(client_ip=client_ip)
         self.user_dict.update({user_name: client_ip})
         self.conn_dict.update({client_ip: tcp_socket})
@@ -117,7 +118,7 @@ class Chat(LogUtils):
                 tcp_socket.send(message)
                 self.logger.info(
                     self.inm("send message to %s success" % client_ip))
-            except Exception, e:
+            except Exception as e:
                 self.logger.error(e)
                 self.close_socket(tcp_socket)  # TODO
         else:
@@ -177,11 +178,12 @@ class AcceptClient(Thread, Chat):
                         # TODO
                         # 广播在线用户
                         self.broadcast_user_list()
-                        self.logger.info(self.inm("%s login successful" % client_ip))
-                except Exception, e:
+                        self.logger.info(
+                            self.inm("%s login successful" % client_ip))
+                except Exception as e:
                     self.logger.error("data in wrong format")
                     self.logger.error(e)
-        except Exception, e:
+        except Exception as e:
             self.logger.error(e)
             self.close_socket(tcp_socket)
 
@@ -260,10 +262,10 @@ class TransmitData(Thread, Chat):
                     else:
                         self.distribute(sender_socket, sender_ip,
                                         sender, message_dict)
-                except Exception, e:
+                except Exception as e:
                     self.logger.error("data in wrong format")
                     self.logger.error(e)
-        except Exception, e:
+        except Exception as e:
             self.logger.error(e)
             self.close_socket(sender_socket)
 

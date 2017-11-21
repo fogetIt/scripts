@@ -55,7 +55,8 @@ class Client(object):
     def login(self, name, password):
         self.client.connect((HOST, PORT))
         self.client.send(
-            self.create_message("login", ext_data={"name": name, "password": password})
+            self.create_message("login", ext_data={
+                                "name": name, "password": password})
         )
 
     def logout(self):
@@ -102,7 +103,6 @@ class MainFrame(wx.Frame):
             weight=wx.BOLD
         )  # Chinese/English = 2
 
-
         # TODO  left sizer init
         """
         use BoxSizer to avoid hard-coded widget's pos and size
@@ -144,7 +144,6 @@ class MainFrame(wx.Frame):
             flag=wx.EXPAND | wx.ALL,
             border=0
         )
-
 
         # TODO  right top sizer init
         self.user_text = wx.StaticText(
@@ -240,7 +239,6 @@ class MainFrame(wx.Frame):
             border=200
         )
 
-
         # TODO  main sizer init
         self.main_sizer = wx.BoxSizer()
         self.main_sizer.Add(
@@ -327,7 +325,8 @@ class MainFrame(wx.Frame):
         self.find_sender = self.user_list_box.FindString(sender + u"♡")
 
     def pub_user_list(self):
-        self.user_list = [user.strip(u"♡").strip(u"♥") for user in self.user_list_box.GetItems()]
+        self.user_list = [user.strip(u"♡").strip(u"♥")
+                          for user in self.user_list_box.GetItems()]
 
 
 class MainWindow(Thread, Client, MainFrame):
@@ -562,7 +561,7 @@ class REPL(Thread, Client):
                         self.error_handle(message_dict)
                     elif title == "user_list":
                         self.user_list_handle(message_dict)
-                except Exception, e:
+                except Exception as e:
                     print("data in wrong format:%s\n%s" % (e, message))
 
 
