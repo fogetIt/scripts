@@ -321,7 +321,7 @@ class MainFrame(wx.Frame):
         if label.startswith("self:"):
             _label = label.replace("self:\n\t", "\t\t\t\t").replace("\n\t", "\n\t\t\t\t")
             text = MixedUnicode(_label.strip())
-            if len(text) <= n:
+            if len(text) <= self.n:
                 _label = "\t" * ((self.n - len(text)) / 4) + _label
         static_text = wx.StaticText(
             parent=self.message_panel,
