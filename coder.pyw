@@ -106,6 +106,7 @@ class StrUtils(object):
 
     def reverse(self, _str):
         """'aB*c d' → 'd c*Ba'"""
+        # return _str[::-1]
         _list = list(_str)
         _list.reverse()
         return "".join(_list)

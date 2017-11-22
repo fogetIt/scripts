@@ -37,6 +37,47 @@ BLUE_COLOR = wx.Colour(30, 144, 255)
 GREEN_COLOR = wx.Colour(0, 139, 69)
 
 
+class MixedUnicode(unicode):
+    """
+    如果运行报错，加上
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
+    """
+    chinese_code_range = u"[\u4e00-\u9fa5]"
+
+    def __len__(self):
+        chinese_list = re.findall(self.chinese_code_range, self)
+        return super(MixedUnicode, self).__len__() + len(chinese_list)
+
+    def lcut(self, end):
+        if end <= 0:
+            return None, None
+        num = 0
+        result = []
+        for i in self:
+            if 0 <= num < end:
+                if re.match(self.chinese_code_range, i):
+                    num += 2
+                else:
+                    num += 1
+                result.append(i)
+        left = "".join(result)
+        right = self.replace(left, "", 1)
+        return left, right
+
+    @staticmethod
+    def wrap(text, n, text_list=None):
+        text_list = text_list if text_list else []
+        left, right = MixedUnicode(text).lcut(n)
+        if left:
+            text_list.append(left)
+            text_list.append("\n")
+            if right:
+                text_list.append("\t")
+                MixedUnicode(right).wrap(right, n, text_list=text_list)
+        return "".join(text_list)
+
+
 class Client(object):
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -75,10 +116,11 @@ class Client(object):
 
 
 class MainFrame(wx.Frame):
+    n = 48
+    user_list = []
+    find_sender = -1
     message_store = {}
     my_name = my_password = checked_user = None
-    find_sender = -1
-    user_list = []
 
     def __init__(self):
         pos = (400, 50)
@@ -262,8 +304,6 @@ class MainFrame(wx.Frame):
 
     def create_label(self, startswith, wrapped_text):
         label = "%s:\n\t%s" % (startswith, wrapped_text)
-        if label.startswith("self:"):
-            label = label.replace("\n\t", "\n\t\t\t\t")
         return label
 
     def update_message_store(self, name, wrapped_text, message_sender=None):
@@ -279,7 +319,10 @@ class MainFrame(wx.Frame):
     def create_static_text_by_label(self, label, name):
         _label = label
         if label.startswith("self:"):
-            _label = label.replace("self:", "\t\t\t")
+            _label = label.replace("self:\n\t", "\t\t\t\t").replace("\n\t", "\n\t\t\t\t")
+            text = MixedUnicode(_label.strip())
+            if len(text) <= n:
+                _label = "\t" * ((self.n - len(text)) / 4) + _label
         static_text = wx.StaticText(
             parent=self.message_panel,
             label=_label,
@@ -394,33 +437,6 @@ class MainWindow(Thread, Client, MainFrame):
         self.clear_button.Enable(True)
         self.show_message(self.checked_user)
 
-    @staticmethod
-    def wrap_chinese(text, n):
-        front_text = text[:n]
-        chinese_list = re.findall(u"[\u4e00-\u9fa5]", text[:n])
-        if chinese_list:
-            front_text = re.sub(u"[\u4e00-\u9fa5]", "@#", text[:n])[:n]
-            chinese_count = len(re.findall('@#', front_text))
-            for i in range(chinese_count):
-                front_text = front_text.replace("@#", chinese_list[i], 1)
-        back_text = text.replace(front_text, "", 1)
-        return front_text, back_text
-
-    @staticmethod
-    def wrap_text(text, text_list=None):
-        n = 46
-        text_list = text_list if text_list else []
-        front_text, back_text = MainWindow.wrap_chinese(text, n)
-        text_list.append(front_text)
-        text_list.append("\n")
-        if back_text:
-            text_list.append("\t")
-            MainWindow.wrap_text(back_text, text_list=text_list)
-        wrapped_text = ""
-        for i in text_list:
-            wrapped_text += i
-        return wrapped_text
-
     def clear_message_event(self, e):
         if self.checked_user:
             self.message_store.pop(self.checked_user, None)
@@ -428,7 +444,7 @@ class MainWindow(Thread, Client, MainFrame):
 
     def send_message_event(self, e):
         text = self.input_field.GetValue().strip()
-        wrapped_text = self.wrap_text(text)
+        wrapped_text = MixedUnicode.wrap(text, self.n)
         if not self.checked_user:
             self.show_tip(u"未选择用户")
         elif not text:
@@ -456,21 +472,6 @@ class MainWindow(Thread, Client, MainFrame):
 
     def run(self):
         MainWindow.app.MainLoop()
-
-
-class MixedStr(str):
-
-    def __len__(self):
-        chinese_list = re.findall(u"[\u4e00-\u9fa5]", str(self))
-        return super(MixedStr, self).__len__() + len(chinese_list)
-
-    @staticmethod
-    def wrap(text, n, text_line=None):
-        text_list = text_list if text_list else []
-
-
-text = MixedStr("mkkhgcyd啧啧啧")
-print len(text)
 
 
 class REPL(Thread, Client):
