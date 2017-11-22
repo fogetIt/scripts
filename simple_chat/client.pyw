@@ -49,7 +49,7 @@ class MixedUnicode(unicode):
         chinese_list = re.findall(self.chinese_code_range, self)
         return super(MixedUnicode, self).__len__() + len(chinese_list)
 
-    def lcut(self, end):
+    def l_cut(self, end):
         if end <= 0:
             return None, None
         num = 0
@@ -66,15 +66,15 @@ class MixedUnicode(unicode):
         return left, right
 
     @staticmethod
-    def wrap(text, n, text_list=None):
+    def wrap_text(text, n, text_list=None):
         text_list = text_list if text_list else []
-        left, right = MixedUnicode(text).lcut(n)
+        left, right = MixedUnicode(text).l_cut(n)
         if left:
             text_list.append(left)
             text_list.append("\n")
             if right:
                 text_list.append("\t")
-                MixedUnicode(right).wrap(right, n, text_list=text_list)
+                MixedUnicode(right).wrap_text(right, n, text_list=text_list)
         return "".join(text_list)
 
 
@@ -444,7 +444,7 @@ class MainWindow(Thread, Client, MainFrame):
 
     def send_message_event(self, e):
         text = self.input_field.GetValue().strip()
-        wrapped_text = MixedUnicode.wrap(text, self.n)
+        wrapped_text = MixedUnicode.wrap_text(text, self.n)
         if not self.checked_user:
             self.show_tip(u"未选择用户")
         elif not text:
