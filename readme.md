@@ -1,8 +1,3 @@
-##### install
-```shell
-pip install gevent==1.2.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
-```
-
 ##### knowledge
 ```
 主线程全局变量，被所有子线程共享。

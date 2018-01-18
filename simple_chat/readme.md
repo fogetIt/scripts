@@ -1,19 +1,3 @@
-##### install
-```shell
-pip install bidict==0.13.1 -i https://pypi.tuna.tsinghua.edu.cn/simple
-
-
-: "install wxpython in system"
-apt-cache search wxpython
-if [ $? == 0 ]; then
-    sudo apt-get install python-wxtools
-fi
-
-
-: "install wxpython in virtualenv"
-virtualenv ./ --system-site-packages  -p /usr/bin/python
-```
-
 ##### flow
 ```
 login: 客户端运行程序时自动与服务器建立连接。
