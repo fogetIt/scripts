@@ -1,13 +1,13 @@
 #!/bin/bash
 # @Date:   2018-01-18 16:14:09
-# @Last Modified time: 2018-01-18 16:14:29
+# @Last Modified time: 2018-01-20 12:15:36
 PSWD=$1
 
 [ $PSWD ] \
 && echo $PSWD | sudo -S echo "running" \
 && virtualenv ./venv/ \
     --system-site-packages \
-    -p /usr/bin/python \
+    -p $(which python) \
 && source ./venv/bin/activate \
 && pip install \
     -r requirements.txt \

@@ -8,13 +8,12 @@ import datetime
 from matplotlib import pyplot
 from matplotlib.font_manager import FontProperties
 
+THIS_YEAR = datetime.date.today().year
 
 """
 朝代起始时间 == 统一全国之时
 """
 history = [
-    # {u"西周": [-1046, -771]},
-    # {u"春秋": [-770, -476]},
     {u"战国": [-475, -221]},
     {u"秦": [-221, -207]},
     {u"西汉": [-207, 8]},
@@ -39,7 +38,7 @@ history = [
     {u"大顺&南明": [1644, 1664]},
     {u"清": [1664, 1911]},
     {u"民国": [1912, 1951]},
-    {u"共和国": [1951, datetime.date.today().year]},
+    {u"共和国": [1951, THIS_YEAR]},
     {u"": [0, 0]},
     {u"": [0, 0]},
 ]
