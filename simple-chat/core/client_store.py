@@ -24,6 +24,17 @@ class ClientStore(Single):
         self.user_ip_dict.inv.pop(client_ip)
         self.ip_socket_dict.pop(client_ip)
 
+    def get_client(self, user_name=None, client_ip=None, client_socket=None):
+        if not user_name:
+            user_name = self.get_user(client_ip=client_ip, client_socket=client_socket)
+        if not client_ip:
+            client_ip = self.get_ip(user_name=user_name, client_socket=client_socket)
+        if not client_socket:
+            client_socket = self.get_socket(user_name=user_name, client_ip=client_ip)
+        if not client_socket:
+            return False
+        return {"user": user_name, "ip": client_ip, "socket": client_socket}
+
     def get_user(self, client_ip=None, client_socket=None):
         user_name = None
         if not client_ip and client_socket:
@@ -48,8 +59,10 @@ class ClientStore(Single):
             client_socket = self.ip_socket_dict.get(client_ip)
         return client_socket
 
-    def get_socket_list(self):
+    @property
+    def socket_iterator(self):
         return self.ip_socket_dict.itervalues()
 
-    def get_user_list(self):
+    @property
+    def user_list(self):
         return self.user_ip_dict.keys()
