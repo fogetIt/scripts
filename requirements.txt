@@ -1,6 +1,4 @@
 gevent==1.2.2
 beautifulsoup4==4.6.0
 
-bidict==0.13.1
-
 matplotlib==2.0.2
