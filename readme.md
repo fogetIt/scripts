@@ -19,3 +19,10 @@ GeventSpider
 sp.main(sp)
     在类中使用装饰器，调用函数时，需要传递实例对象作为参数
 ```
+
+
+```bash
+pip install rst2pdf==0.93.dev0
+# sudo cp xxx.ttf  /usr/share/fonts/
+rst2pdf -s chinese.style 简历.rst
+```

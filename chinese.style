@@ -1,0 +1,15 @@
+{
+  "embeddedFonts": [
+    [
+      "msyh.ttf",
+      "msyh.ttf",
+      "msyh.ttf",
+      "msyh.ttf"
+    ]
+  ],
+  "fontsAlias": {
+    "stdFont": "msyh",
+    "stdBold": "msyh",
+    "stdItalic": "msyh"
+  }
+}

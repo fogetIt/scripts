@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Date:   2016-09-22 09:31:01
-# @Last Modified time: 2018-02-28 14:03:47
+# @Last Modified time: 2018-04-12 14:03:58
 # PATH:${Git}\cmd;
 import os
 import platform
@@ -16,7 +16,7 @@ class Git:
             'smart-sso',
             'nodeSpider',
             'scripts',
-            'LANchat',
+            # 'LANchat',
             'devenv',
             'py-doc',
         ]
