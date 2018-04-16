@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Date:   2016-09-22 09:31:01
-# @Last Modified time: 2018-04-12 14:03:58
+# @Last Modified time: 2018-04-16 14:58:42
 # PATH:${Git}\cmd;
 import os
 import platform
@@ -12,13 +12,13 @@ class Git:
     def __init__(self, my_dir):
         self.parent_path = os.path.abspath("..")
         dir_list = [
-            'free-spider',
-            'smart-sso',
-            'nodeSpider',
-            'scripts',
-            # 'LANchat',
             'devenv',
             'py-doc',
+            'scripts',
+            'smart-sso',
+            'multi-work',
+            'nodeSpider',
+            # 'LANchat',
         ]
         if my_dir == '':
             for i in dir_list:
