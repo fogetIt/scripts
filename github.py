@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Date:   2016-09-22 09:31:01
-# @Last Modified time: 2018-04-16 14:58:42
+# @Last Modified time: 2018-04-27 18:56:22
 # PATH:${Git}\cmd;
 import os
 import platform
@@ -17,7 +17,7 @@ class Git:
             'scripts',
             'smart-sso',
             'multi-work',
-            'nodeSpider',
+            # 'nodeSpider',
             # 'LANchat',
         ]
         if my_dir == '':
