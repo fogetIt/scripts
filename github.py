@@ -15,8 +15,8 @@ class Git:
             'devenv',
             'py-doc',
             'scripts',
-            'smart-sso',
             'multi-work',
+            # 'smart-sso',
             # 'nodeSpider',
             # 'LANchat',
         ]
