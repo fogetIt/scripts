@@ -13,9 +13,9 @@ class Git:
         self.parent_path = os.path.abspath("..")
         dir_list = [
             'devenv',
-            'py-doc',
             'scripts',
-            'multi-work',
+            # 'py-doc',
+            # 'multi-work',
             # 'smart-sso',
             # 'nodeSpider',
             # 'LANchat',
