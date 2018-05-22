@@ -12,11 +12,11 @@ class Git:
     def __init__(self, my_dir):
         self.parent_path = os.path.abspath("..")
         dir_list = [
-            'devenv',
-            'working',
             'scripts',
+            'working',
+            'dev-env',
+            'web-juicer',
             # 'py-doc',
-            # 'multi-work',
             # 'smart-sso',
             # 'nodeSpider',
             # 'LANchat',
