@@ -16,7 +16,7 @@ class Git:
             'scripts',
             'working',
             'dev-env',
-            'web-juicer',
+            # 'web-juicer',
             # 'py-doc',
             # 'smart-sso',
             # 'nodeSpider',
