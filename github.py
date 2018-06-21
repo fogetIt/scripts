@@ -14,7 +14,6 @@ class Git:
         dir_list = [
             'qb',
             'scripts',
-            'working',
             'dev-env',
             # 'web-juicer',
             # 'py-doc',
