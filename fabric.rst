@@ -17,10 +17,12 @@
 
 :fabric-ca: 会员注册和证书颁发节点
 
+    - 每个 org 需要一个 ca 节点
     - fabric 系统的参与方（ orderer,peer,client ）都必须经过授权，需要拥有受信任的证书
 
 :fabric-orderer: 共识网络节点
 
+    - 每个 channel 需要一个 orderer 集群
     - 多方一起参与交易排序，生成新的区块，发送给 peer 节点
 
 :fabric-peer: 区块链节点
@@ -36,7 +38,6 @@
                 - 每个区块包含一条或多条交易
             - 修改 K-V 状态数据
                 - 通过持有 CouchDB/LevelDB （世界状态数据库），提供给链码存取使用
-
 
 工具
 --------
@@ -76,3 +77,38 @@
     :configtxlator:
     :cryptogen: 根据网络用户拓扑关系（ .yaml 文件定义）生成各个节点（ peers,orderers,ca ）的证书
     :peer:
+
+
+channel
+----------
+
+:频道:
+
+    - Channel 本身存在于 orderer 结点内部，但需要使用 peer channel ... 命令进行维护
+    - 两个 peer 结点必须同时处在同一个 Channel 中，才能发生交易
+    - block 账本与 channel 是一对一的关系
+
+:peer channel create: 在 orderer 结点内部创建一个 channel
+
+    .. code-block:: bash
+
+        peer channel create -o orderer.xxx:7050 -c mychannel -f channel.tx
+
+:peer channel join:	  把 peer 加入一个 channel
+
+    .. code-block:: bash
+
+        peer channel join -b mychannel.block
+
+:peer channel update: 升级 channel 的某一组织的配置
+
+    .. code-block:: bash
+
+        peer channel update -o orderer.xxx:7050 -c mychannel -f Org1MSPanchors.tx
+
+:peer channel list:   列出当前系统中已经存在的 channel
+:peer channel fetch:  获取 channel 中 newest,oldest 块数据或当前最新的配置数据
+
+    .. code-block:: bash
+
+        peer channel fetch config config_block.pb -o orderer.xxx:7050 -c mychannel
