@@ -84,7 +84,7 @@ channel
 
 :频道:
 
-    - Channel 本身存在于 orderer 结点内部，但需要使用 peer channel ... 命令进行维护
+    - Channel 本身存在于 orderer 结点内部，但需要使用 peer 节点 channel ... 命令进行维护
     - 两个 peer 结点必须同时处在同一个 Channel 中，才能发生交易
     - block 账本与 channel 是一对一的关系
 
