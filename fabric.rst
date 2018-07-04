@@ -19,6 +19,7 @@
 
     - 每个 org 需要一个 ca 节点
     - fabric 系统的参与方（ orderer,peer,client ）都必须经过授权，需要拥有受信任的证书
+    - 在 1.0 版本中， CA 可以脱离 docker 和节点，作为一个独立的服务来运行
 
 :fabric-orderer: 共识网络节点
 
@@ -38,6 +39,7 @@
                 - 每个区块包含一条或多条交易
             - 修改 K-V 状态数据
                 - 通过持有 CouchDB/LevelDB （世界状态数据库），提供给链码存取使用
+                - fabric-couchdb 容器里面 /opt/couchdb/data 目录保存着数据
 
 工具
 --------
@@ -75,7 +77,9 @@
         - 生成组织锚节点 anchor peer transactions
 
     :configtxlator:
-    :cryptogen: 根据网络用户拓扑关系（ .yaml 文件定义）生成各个节点（ peers,orderers,ca ）的证书
+    :cryptogen:
+        - 根据网络用户拓扑关系（ .yaml 文件定义）生成各个节点（ peers,orderers,ca ）的证书
+        - 生产环境中应该由每个 org 的 CA 节点颁发
     :peer:
 
 
