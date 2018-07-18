@@ -14,6 +14,7 @@ class Git:
         dir_list = [
             'scripts',
             'dev-env',
+            'fabric-multi-with-kafka',
             # 'web-juicer',
             # 'py-doc',
             # 'smart-sso',
