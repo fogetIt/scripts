@@ -13,10 +13,9 @@ class Git:
         self.parent_path = os.path.abspath("..")
         dir_list = [
             'scripts',
-            'dev-env',
+            'devenv',
             'hyperledger-with-swarm',
-            # 'web-juicer',
-            # 'py-doc',
+            # 'py.doc',
             # 'smart-sso',
             # 'nodeSpider',
             # 'LANchat',
