@@ -1,1 +1,8 @@
-ctypes
+- ctypes
+- requests(iter_content)
+- apistar
+- sanic
+- bottle
+- tqdm
+- pyvim
+- pyglet
