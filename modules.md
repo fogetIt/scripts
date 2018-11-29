@@ -6,3 +6,7 @@
 - tqdm
 - pyvim
 - pyglet
+- timeit
+- profile
+- cProfile(.run())
+- sched
