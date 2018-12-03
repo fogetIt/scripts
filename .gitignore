@@ -1,6 +1,8 @@
 # folds
 .idea/
 venv/
+.vagrant/
+__pycache__/
 
 
 # files

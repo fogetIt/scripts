@@ -1,0 +1,20 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+  config.vm.box_check_update = false
+  config.vm.network "forwarded_port", guest: 3306, host: 3309
+  config.vm.synced_folder "./bootstrap", "/home/vagrant/bootstrap"
+  config.vm.define :mysql do |mysql|
+    config.vm.hostname = "centos-mysql"
+  end
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = false
+    vb.memory = "1024"
+    vb.name = "mysql"
+    vb.cpus = 2
+  end
+  config.vm.provision "shell", inline: <<-SHELL
+    cd /home/vagrant/bootstrap && /bin/bash mysql.sh
+  SHELL
+end
