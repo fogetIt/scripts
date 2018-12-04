@@ -15,13 +15,9 @@
 - 优先使用 hosts 文件中记录的对应关系查询网址 IP
 - 如果 hosts 没有要访问的网址，才去寻找 DNS 服务器
 - DNS 劫持和污染，对 hosts 没有影响
-
-|系统      |文件位置                              |生效方法                              |
-|:--------|:------------------------------------|:------------------------------------|
-|Windows  |C:\Windows\System32\drivers\etc\hosts|ipconfig /flushdns                   |
-|Android  |/system/etc/hosts                    |开/关飞行模式　　　　　　                |
-|Mac & iOS|/etc/hosts                           |sudo killall -HUP mDNSResponder      |
-|Linux    |/etc/hosts                           |sudo rcnscd restart                  |
-|         |systemd 发行版                        |sudo systemctl restart NetworkManager|
-
-通用生效方法：插拔网线
+- 文件位置
+    - Windows: C:\Windows\System32\drivers\etc\hosts
+    - Android: /system/etc/hosts
+    - Mac/iOS: /etc/hosts
+    - Linux: /etc/hosts
+- 生效方法：插/拔网线、开/关飞行模式、重启网卡

@@ -36,7 +36,7 @@
         - 可选的消息体
 
 ##### URL(Uniform Resource Locator)
-- 用于描述一个网络上的资源
+- 统一资源定位符——用于描述一个网络上的资源
 - 基本格式：`schema://host[:port]/path/[?query-string][#anchor]`
     - scheme
         - 指定低层协议(http/https/ftp)
@@ -59,9 +59,8 @@
     - 在许多情况下可以不需要发送完整响应
         - 用“验证(validation)”机制来减少网络应用的带宽
 
-
-##### 基于HTTP的应用
-1. HTTP代理
+##### 基于 HTTP 的应用
+1. HTTP 代理
 2. 多线程下载
     - 下载工具开启多个发出 HTTP 请求的线程
     - 每个 http 请求只请求资源文件的一部分：Content-Range: bytes 20000-40000/47000
