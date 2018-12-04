@@ -13,7 +13,8 @@
 --      DISTINCT
 --          单独使用时，必须放在开头(列去重）
 --          与其他函数使用时，没有位置限制(字段去重)
---      ABS(SUM(IF(表名.col=5, 表名.num, 0)))
+--      ABS(SUM(IF(表名.列名=5, 表名.num, 0)))
+--      MAX(列名)
 --      FROM_UNIXTIME(表名.create_at, '%Y-%m-%d %H:%M:%S')
 --          第一个参数是时间戳或者 DATE/DATETIME
 --      UNIX_TIMESTAMP(NOW())
@@ -22,11 +23,11 @@
 --              一个 DATE/DATETIME
 --              一个 YYMMDD/YYYMMDD/YYYYMMDD 格式的数字
 --      截取字符串
---          LEFT(表名.col,4)
+--          LEFT(表名.列名,4)
 --              截取左边指定长度字符
---          RIGHT(表名.col,4)
+--          RIGHT(表名.列名,4)
 --              截取右边指定长度字符
---          SUBSTRING(表名.col,5,2)
+--          SUBSTRING(表名.列名,5,2)
 --              截取特定位置指定长度字符
 --              最后一个参数可以省略，截取到最后一个字符
 --          字符串为 NULL ，返回 NULL
@@ -36,10 +37,10 @@
 --          连接字符串
 --              任何一个参数为 NULL ，则返回 NULL
 --              数字参数被变换为等价的字符串形式
---      GROUP_CONCAT(col)
+--      GROUP_CONCAT(列名)
 --          连接一列字符串
 --      CASE 语句
---          CASE 表名.col
+--          CASE 表名.列名
 --              WHEN 1 THEN 'xxx'
 --              WHEN 2 THEN 'xxx'
 --          ELSE '' END AS new_col

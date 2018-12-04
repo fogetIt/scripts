@@ -2,13 +2,15 @@
 ```bash
 mysqladmin drop database 库名
 ```
+```sql
+DROP DATABASE IF EXISTS `库名`;
+```
 
 ##### 补全插件
 ```bash
 sudo pip install mycli
 mycli -u root -p
 ```
-
 
 ##### 执行 sql 脚本
 ```bash

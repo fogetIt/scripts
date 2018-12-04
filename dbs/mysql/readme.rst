@@ -75,4 +75,4 @@ GUI
     SET character_set_results = utf8;
     SET character_set_server = utf8;
 
-**mysql 命令不区分大小写，以 ; 作为命令结束符。**
+**mysql 命令不区分大小写。以 ; 作为命令结束符；以 \c 取消命令；引号( ' or " )可以跨行，引号内部 ; 和 \c 无效。**

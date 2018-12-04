@@ -1,9 +1,9 @@
 ##### 操作数据
 ```sql
 -- 插入整行
-INSERT INTO 表名 VALUES(值1,值2,...);
+INSERT INTO 表名 VALUES(值1,值2,...),...;
 -- 插入指定列
-INSERT INTO (列1,列2,...)　表名 VALUES(值1,值2,...);
+INSERT INTO (列1,列2,...)　表名 VALUES(值1,值2,...),...;
 
 -- 删除匹配行
 DELETE FROM 表名 WHERE 条件;
