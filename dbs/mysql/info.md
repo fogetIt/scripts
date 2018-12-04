@@ -7,9 +7,9 @@ SELECT USER();        -- 查看当前用户
 SELECT VERSION(),CURRENT_DATE,NOW(),USER();
 -- 库信息
 SHOW DATABASES;                       -- 显示所有数据库
-DROP DATABASE IF EXISTS `表名`;        -- 删除数据库
-CREATE DATABASE `表名` IF NOT EXISTS;  -- 创建数据库
-USE `表名`;                            -- 选择数据库
+DROP DATABASE IF EXISTS `库名`;        -- 删除数据库
+CREATE DATABASE `库名` IF NOT EXISTS;  -- 创建数据库
+USE `库名`;                            -- 选择数据库
 SELECT DATABASE();                    -- 查询当前数据库
 -- 表信息
 DROP TABLE IF EXISTS `表名`;     -- 删除表
