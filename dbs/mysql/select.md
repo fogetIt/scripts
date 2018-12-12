@@ -83,14 +83,25 @@ SELECT 列 WHERE 条件语句 FROM 表名 分组 排序 限定;
 
 ##### 变量
 ```sql
--- 声明
-set @变量名=值;
--- 或者
-set @变量名:=值;
+-- 用户变量
+SET @变量名=值;
+SET @变量名:=值;
+-- SELECT 中使用 := 赋值，区别于 =
+SELECT @变量名:=列 FROM 表名 WHERE 列名=@变量名;
 
--- 使用
-SELECT * FROM 表名 WHERE 列名=@变量名;
-SELECT @变量名:=列名 FROM `表名`;
+-- 会话变量(连接期间有效)
+SET session 变量名=值;
+SET @@session.变量名=值;
+SET 变量名=值;
+SELECT @@变量名;
+SELECT @@session.变量名;
+SHOW session VARIABLES;
+
+-- 全局变量(服务器启动时生效)
+SET global 变量名=值;
+SET @@global.变量名=值;
+SELECT @@global.变量名;
+SHOW global VARIABLES;
 ```
 
 ##### 权重
