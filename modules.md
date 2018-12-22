@@ -11,3 +11,6 @@
 - cProfile(.run())
 - sched
 - IPy(.IP(xxx))
+- gevent
+- beautifulsoup4
+- matplotlib
