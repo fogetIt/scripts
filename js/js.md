@@ -37,8 +37,9 @@ jQuery.fn.extend(object);
     ```
 - 函数定义执行完后，才会按顺序执行其他代码
 
-
 ##### 默认参数
 ```javascript
 function(arg){ var arg = arg || {}; }
 ```
+
+##### for in 遍历出来的索引是 `string` 类型
