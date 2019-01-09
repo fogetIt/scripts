@@ -1,6 +1,12 @@
 'use strict';
 /**
  * 声明 promise
+ * Promise.then(onFulfilled, OnRejected) => newPromise
+ * onFulfilled    成功后执行函数
+ * OnRejected     失败后执行函数
+ *
+ * 可以在 .then() 链中嵌入 .catch()
+ * 当执行一堆 then() 的过程中出现错误的时候会找到最近的 .catch() 执行
  */
 const p1 = new Promise((resolve, reject) => {
     resolve(111111);
