@@ -1,3 +1,50 @@
+### js
+##### 自执行函数
+```javascript
+/**
+ * ;    分隔符，防止压缩合并多个js文件时忘记写分隔符
+ * !    自执行函数标志，引入js文件就自动执行
+ */
+;!function funName(arg) {...}
+```
+
+##### 类
+```javascript
+/**
+ * 为 jQuery 类添加类方法(静态方法)
+ */
+jQuery.extend(object)
+/**
+ * 用一/多个其他对象来扩展一个对象，返回被扩展的对象
+ */
+jQuery.extend(target, object1, [objectN])
+/**
+ * 对 jQuery.prototype 扩展
+ * 为 jQuery 类添加成员函数
+ * jQuery.fn.extend = jQuery.prototype.extend
+ */
+jQuery.fn.extend(object);
+```
+##### 执行顺序
+- JavaScript执行引擎并非一行一行地分析和执行程序，而是一段一段地分析执行的
+- 在分析执行同一段代码中，定义式的函数会被提取出来优先执行
+    ```javascript
+    // 定义式的函数
+    function funName(){...}
+    // 非定义式的函数
+    var funName = function(){...}
+    ```
+- 函数定义执行完后，才会按顺序执行其他代码
+
+##### 默认参数
+```javascript
+function(arg){ var arg = arg || {}; }
+```
+
+##### for in 遍历出来的索引是 `string` 类型
+
+-----
+
 ### Node.js
 - 一个事件驱动 I/O 服务端 JavaScript 环境
 - 基于 Google V8 引擎(速度快，性能好)
@@ -89,17 +136,17 @@ let yyy = module.yyy
     + 导出代码
     + 初始值为{}
 - exports
-    + 指向module.exports的引用
+    + 指向 module.exports 的引用
 - module.exports 指向新的对象时，exports 断开了与 module.exports 的引用
-    + 重新引用exports = module.exports = somethings
+    + 重新引用 exports = module.exports = somethings
 - require
-    + 加载载module.exports代码
+    + 加载载 module.exports 代码
 
 ##### 箭头函数
 - ES6 新特性
 - 不能用 new 来实例化(构造类对象)
-- 没有arguments对象
-- this不再善变
+- 没有 arguments 对象
+- this 不再善变
 ```javascript
 // 省略 return
 () => ***
