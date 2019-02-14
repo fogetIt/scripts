@@ -8,14 +8,8 @@
  * 可以在 .then() 链中嵌入 .catch()
  * 当执行一堆 then() 的过程中出现错误的时候会找到最近的 .catch() 执行
  */
-const p1 = new Promise((resolve, reject) => {
-    resolve(111111);
-});
-
-const p2 = new Promise((resolve, reject) => {
-    resolve(222222);
-});
-
+const p1 = new Promise((resolve, reject) => { resolve(111111); });
+const p2 = new Promise((resolve, reject) => { resolve(222222); });
 const arg = parseInt(process.argv.splice(2));
 /**
  * 执行顺序
@@ -30,7 +24,7 @@ if (arg === 1) {
         await p1.then(res1 => { console.log(res1); });
         console.log(res2);
     })
-    console.log(333333)
+    console.log(333333);
 } else if (arg === 2) {
     /**
      * 333333
@@ -41,7 +35,7 @@ if (arg === 1) {
         p1.then(res1 => { console.log(res1); });
         console.log(res2);
     })
-    console.log(333333)
+    console.log(333333);
 } else if (arg === 3) {
     /**
      * 333333
@@ -52,7 +46,7 @@ if (arg === 1) {
         console.log(res2);
         return p1
     }).then(res1 => { console.log(res1); });
-    console.log(333333)
+    console.log(333333);
 } else if (arg === 4) {
     /**
      * 222222
@@ -79,3 +73,21 @@ if (arg === 1) {
         console.log(result);
     });
 }
+/**
+ * 捕获先执行完毕或失败的 promise
+ * 不会取消其他 promise 对象的执行
+ */
+Promise.race([
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log(1);
+            resolve('a');
+        }, 2000);
+    }),
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log(2);
+            resolve('b');
+        }, 1000);
+    }),
+]).then(console.log).catch(console.warn);

@@ -49,7 +49,7 @@ console.log();
  * __propo__ 是否属于 prototype
  * prototype 是否包含一个 construcotr
  */
-console.log(instance1.prototype,  instance1 instanceof Cls); // undefined true
+console.log(instance1.prototype, instance1 instanceof Cls); // undefined true
 console.log(instance1.__proto__ === Cls.prototype); // true
 console.log(Cls.__proto__ === Function.prototype); // true
 console.log();

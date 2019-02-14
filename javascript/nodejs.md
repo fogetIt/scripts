@@ -142,9 +142,8 @@ let yyy = module.yyy
 - require
     + 加载载 module.exports 代码
 
-##### 箭头函数
-- ES6 新特性
-- 不能用 new 来实例化(构造类对象)
+##### ES6 箭头函数
+- 不能用 new 来实例化
 - 没有 arguments 对象
 - this 不再善变
 ```javascript
